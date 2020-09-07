@@ -46,11 +46,11 @@ else()
   message(STATUS "Version of Bullet too old or not available: disabling Bullet collision detection plugin. Try using Ubuntu 18.04 or later.")
 endif()
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBFCL_PC REQUIRED fcl)
+#find_package(PkgConfig REQUIRED)
+#pkg_check_modules(LIBFCL_PC REQUIRED fcl)
 # find *absolute* paths to LIBFCL_INCLUDE_DIRS and LIBFCL_LIBRARIES
-find_path(LIBFCL_INCLUDE_DIRS fcl/config.h HINTS ${LIBFCL_PC_INCLUDE_DIR} ${LIBFCL_PC_INCLUDE_DIRS})
-find_library(LIBFCL_LIBRARIES fcl HINTS ${LIBFCL_PC_LIBRARY_DIRS})
+#find_path(LIBFCL_INCLUDE_DIRS fcl/config.h HINTS ${LIBFCL_PC_INCLUDE_DIR} ${LIBFCL_PC_INCLUDE_DIRS})
+#find_library(LIBFCL_LIBRARIES fcl HINTS ${LIBFCL_PC_LIBRARY_DIRS})
 
 
 find_package(octomap REQUIRED)
@@ -63,6 +63,7 @@ COMPONENTS
   tf2_geometry_msgs
   eigen_stl_containers
   eigen_conversions
+  fcl_catkin
   geometric_shapes
   geometry_msgs
   kdl_parser
@@ -148,6 +149,7 @@ catkin_package(
     ${OCTOMAP_LIBRARIES}
   CATKIN_DEPENDS
     eigen_stl_containers
+    fcl_catkin
     geometric_shapes
     geometry_msgs
     kdl_parser
@@ -165,7 +167,7 @@ catkin_package(
   DEPENDS
     Boost
     EIGEN3
-    LIBFCL
+    #LIBFCL
     OCTOMAP
     urdfdom
     urdfdom_headers
@@ -177,7 +179,7 @@ include_directories(SYSTEM ${catkin_INCLUDE_DIRS}
                            ${EIGEN3_INCLUDE_DIRS}
                            ${urdfdom_INCLUDE_DIRS}
                            ${urdfdom_headers_INCLUDE_DIRS}
-                           ${LIBFCL_INCLUDE_DIRS}
+                           #${LIBFCL_INCLUDE_DIRS}
                            ${BULLET_INCLUDE_DIRS}
                            ${OCTOMAP_INCLUDE_DIRS}
                     )
