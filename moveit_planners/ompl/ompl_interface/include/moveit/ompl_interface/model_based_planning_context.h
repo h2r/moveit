@@ -376,6 +376,9 @@ protected:
 
   bool use_state_validity_cache_;
 
+  /// when false, clears planners before running solve()
+  bool multi_query_planning_enabled_;
+
   bool simplify_solutions_;
 };
 }
